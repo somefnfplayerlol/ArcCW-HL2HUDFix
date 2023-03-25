@@ -1175,8 +1175,12 @@ function SWEP:CustomAmmoDisplay()
         self.AmmoDisplay.PrimaryClip = tonumber(data.clip) + plus -- amount in clip
     end
 
-    if self.Primary.ClipSize > 0 and tonumber(data.ammo) then
-        self.AmmoDisplay.PrimaryAmmo = tonumber(data.ammo) -- amount in reserve
+    if self.Primary.ClipSize > 0 then
+        if GetConVar("arccw_mult_bottomlessclip"):GetBool() then
+            self.AmmoDisplay.PrimaryAmmo = -1 -- show only clip
+        elseif tonumber(data.ammo) then
+            self.AmmoDisplay.PrimaryAmmo = tonumber(data.ammo) -- amount in reserve
+        end
     end
 
     if true then
