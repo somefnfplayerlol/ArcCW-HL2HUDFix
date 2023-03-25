@@ -27,13 +27,13 @@ hook.Add("PreDrawViewModels", "ArcCW_PreDrawViewmodels_Grad", function()
 end)
 
 hook.Add("HUDShouldDraw", "ArcCW_HideHUD", function(name)
-    if !hide[name] then return end
-    if !LocalPlayer():IsValid() then return end
-    if !LocalPlayer():GetActiveWeapon().ArcCW then return end
-    if GetConVar("arccw_override_hud_off"):GetBool() then return end
-    if ArcCW.PollingDefaultHUDElements then return end
-    if ArcCW.HUDElementConVars[name] and ArcCW.HUDElementConVars[name]:GetBool() == false then return end
-    if engine.ActiveGamemode() == "terrortown" then return end
+    if !hide[name] then return true end
+    if !LocalPlayer():IsValid() then return true end
+    if !LocalPlayer():GetActiveWeapon().ArcCW then return true end
+    if GetConVar("arccw_override_hud_off"):GetBool() then return true end
+    if ArcCW.PollingDefaultHUDElements then return true end
+    if ArcCW.HUDElementConVars[name] and ArcCW.HUDElementConVars[name]:GetBool() == false then return true end
+    if engine.ActiveGamemode() == "terrortown" then return true end
 
     return false
 end)
